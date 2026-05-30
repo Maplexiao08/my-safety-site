@@ -1,9 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import { homedir } from 'os';
+import { fileURLToPath } from 'url';
 
-const inputPath = path.join(homedir(), 'Desktop', 'my-safety-site', 'my-react-app', 'public', 'accidents.json');
-const outputPath = path.join(homedir(), 'Desktop', 'my-safety-site', 'my-react-app', 'public', 'stats.json');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, '..');
+const inputPath = path.join(root, 'public', 'accidents.json');
+const outputPath = path.join(root, 'public', 'stats.json');
 
 const raw = fs.readFileSync(inputPath, 'utf-8');
 const accidents = JSON.parse(raw);
